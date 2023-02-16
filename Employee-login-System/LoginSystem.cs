@@ -31,8 +31,8 @@ namespace Employee_login_System
                     var info = new FileInfo(path);
                     if (info.Length == 0)
                     {
-                        string firstLine = "Employee-Name" + " " + "Login-Time" + " " + " Time-Delayed" + " " + "Reason for Delay";
-                        string s = "\n"+name + " " + entry.ToString() + "00:00" + " " + "Nil";
+                        string firstLine = "Employee-Name" + " | " + "Login-Time" + " | " + " Time-Delayed" + " | " + "Reason for Delay";
+                        string s = "\n"+name + " | " + entry.ToString() +" | "+ "00:00" + " | " + "Nil";
                         Swriter.WriteLine(firstLine);
                         Swriter.WriteLine(s);
                         Swriter.Flush();
@@ -41,7 +41,7 @@ namespace Employee_login_System
                     }
                     else
                     {
-                        string s = "\n"+name +" "+entry.ToString()+"00:00"+" "+ "Nil";
+                        string s = "\n" + name + " | " + entry.ToString() + " | " + "00:00" + " | " + "Nil"; ;
                         Swriter.WriteLine(s);
                         Swriter.Flush();
                         Swriter.Close();
@@ -55,7 +55,7 @@ namespace Employee_login_System
                     string delay_Reason = Console.ReadLine();
                     Fstream = new FileStream("D:\\C#\\Login-Entry.txt", FileMode.Append, FileAccess.Write);
                     Swriter = new StreamWriter(Fstream);
-                    string s = "\n" + name + " " + entry.ToString()+ " " +Convert.ToString(delayed_Time)+" "+delay_Reason;
+                    string s = "\n" + name + " | " + entry.ToString()+ " | " + Convert.ToString(delayed_Time)+" | " +delay_Reason;
                     Swriter.WriteLine(s);
 
                     Swriter.Flush();
