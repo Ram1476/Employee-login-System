@@ -31,7 +31,7 @@ namespace Employee_login_System
             {
                 Console.WriteLine("\nYour Login Time is within \'10:00\', Try Logging in Avoid Delays\n\n Thank You ");
             }
-            Console.WriteLine("\n******* Thank You using the Employee-Login-System *******");
+            Console.WriteLine("\n******* Thank You using the Employee-Login-System ********");
             Console.WriteLine("\n******* HAVE A NICE DAY *******");
             Console.ReadLine();
         }
