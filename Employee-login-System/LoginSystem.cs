@@ -26,7 +26,7 @@ namespace Employee_login_System
                 if (Convert.ToDateTime(entry) <= entry_Time)
                 {
                     Fstream = new FileStream("D:\\C#\\Login-Entry.txt", FileMode.Append, FileAccess.Write);
-                    string path = Convert.ToString(Fstream);
+                    string path = @"D:\\C#\\Login-Entry.txt";
                     Swriter = new StreamWriter(Fstream);
                     var info = new FileInfo(path);
                     if (info.Length == 0)
@@ -49,7 +49,7 @@ namespace Employee_login_System
                 else
                 {
                     TimeSpan delayed_Time = entry.Subtract(entry_Time);
-                    Console.WriteLine($"You Logged in {delayed_Time} this Delayed\n Kindly Provide us the Reason for ur delay:");
+                    Console.WriteLine($"\nYou Logged in {delayed_Time} this Delayed\n Kindly Provide us the Reason for ur delay:");
                     string delay_Reason = Console.ReadLine();
                     Fstream = new FileStream("D:\\C#\\Login-Entry.txt", FileMode.Append, FileAccess.Write);
                     Swriter = new StreamWriter(Fstream);
