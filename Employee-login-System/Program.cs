@@ -34,7 +34,7 @@ namespace Employee_login_System
             }
 
             Console.WriteLine("\n------------------------------------------------------------");
-            Console.WriteLine("\n******* Thank You using the Employee-Login-System ********");
+            Console.WriteLine("\n******* Thank You for using the Employee-Login-System ********");
             Console.WriteLine("\n******* HAVE A NICE DAY *******");
             Console.WriteLine("\n------------------------------------------------------------");
             Console.ReadLine();
