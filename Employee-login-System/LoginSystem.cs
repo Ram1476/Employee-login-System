@@ -40,6 +40,7 @@ namespace Employee_login_System
                             string s = "\n" + name + " | " + entry.ToString() + " | " + "00:00" + " | " + "Nil";
                             Swriter.WriteLine(firstLine);
                             writefunc(s);
+                            
 
                         }
                         else
@@ -52,6 +53,7 @@ namespace Employee_login_System
                     else
                     {
                         TimeSpan delayed_Time = entry.Subtract(entry_Time);
+
                         Console.Write($"\nYour are late by {delayed_Time} HH:MM:SS \n\n Kindly Provide us the Reason for ur delay: ");
                         string delay_Reason = Console.ReadLine();
                         string s = "\n" + name + " | " + entry.ToString() + " | " + Convert.ToString(delayed_Time) + " | " + delay_Reason;
@@ -61,12 +63,14 @@ namespace Employee_login_System
                 }
                 else
                 {
-                    Console.WriteLine("\nEnter the input in correct time format (HH:MM:SS)");
+                    Console.WriteLine("------------------------------------------------------------");
+                    Console.WriteLine("\nEnter Your Login Time in correct format (HH:MM:SS)");
 
                     Console.Write("\nEnter Your Login Time (HH:MM): ");
 
                     input = Console.ReadLine();
 
+                    Console.WriteLine("------------------------------------------------------------");
                 }
             }
 

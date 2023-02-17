@@ -11,7 +11,8 @@ namespace Employee_login_System
         static void Main(string[] args)
         {   
             LoginSystem user1 = new LoginSystem();
-            Console.Write("Enter Employee name: ");
+            Console.WriteLine("*********** WELCOME TO EMPLOYEE LOGIN SYSTEM ***********");
+            Console.Write("\nEnter Employee name: ");
             user1.name = Console.ReadLine();
             Console.Write("\nEmployee Login Status (Entered/Not Entered): ");
             string entryStatus = Console.ReadLine();
@@ -31,8 +32,11 @@ namespace Employee_login_System
             {
                 Console.WriteLine("\nYour Login Time is within \'10:00\', Try Logging in Avoid Delays\n\n Thank You ");
             }
+
+            Console.WriteLine("\n------------------------------------------------------------");
             Console.WriteLine("\n******* Thank You using the Employee-Login-System ********");
             Console.WriteLine("\n******* HAVE A NICE DAY *******");
+            Console.WriteLine("\n------------------------------------------------------------");
             Console.ReadLine();
         }
     }
