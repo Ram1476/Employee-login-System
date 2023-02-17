@@ -50,7 +50,7 @@ namespace Employee_login_System
                     else
                     {
                         TimeSpan delayed_Time = entry.Subtract(entry_Time);
-                        Console.Write($"\nYour are late by {delayed_Time} HH:MM:SS\n\n Kindly Provide us the Reason for ur delay: ");
+                        Console.Write($"\nYour are late by {delayed_Time} HH:MM:SS \n\n Kindly Provide us the Reason for ur delay: ");
                         string delay_Reason = Console.ReadLine();
                         string s = "\n" + name + " | " + entry.ToString() + " | " + Convert.ToString(delayed_Time) + " | " + delay_Reason;
                         writefunc(s);
