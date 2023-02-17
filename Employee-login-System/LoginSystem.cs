@@ -35,10 +35,12 @@ namespace Employee_login_System
                         var info = new FileInfo(path);
                         if (info.Length == 0)
                         {
+
                             string firstLine = "Employee-Name" + " | " + "Login-Time" + " | " + " Time-Delayed" + " | " + "Reason for Delay";
                             string s = "\n" + name + " | " + entry.ToString() + " | " + "00:00" + " | " + "Nil";
                             Swriter.WriteLine(firstLine);
                             writefunc(s);
+
                         }
                         else
                         {
