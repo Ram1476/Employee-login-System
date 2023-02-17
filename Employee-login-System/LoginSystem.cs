@@ -21,53 +21,62 @@ namespace Employee_login_System
         DateTime entry_Time = Convert.ToDateTime("10:00");
         public void loginEntry()
         {
-            if (DateTime.TryParse(input, out entry))
+
+            Fstream = new FileStream("D:\\C#\\Login-Entry.csv", FileMode.Append, FileAccess.Write);
+            string path = @"D:\\C#\\Login-Entry.csv";
+            Swriter = new StreamWriter(Fstream);
+            int i = 1;
+            while (i > 0)
             {
-                if (Convert.ToDateTime(entry) <= entry_Time)
+                if (DateTime.TryParse(input, out entry))
                 {
-                    Fstream = new FileStream("D:\\C#\\Login-Entry.txt", FileMode.Append, FileAccess.Write);
-                    string path = @"D:\\C#\\Login-Entry.txt";
-                    Swriter = new StreamWriter(Fstream);
-                    var info = new FileInfo(path);
-                    if (info.Length == 0)
+                    if (Convert.ToDateTime(entry) <= entry_Time)
                     {
-                        string firstLine = "Employee-Name" + " | " + "Login-Time" + " | " + " Time-Delayed" + " | " + "Reason for Delay";
-                        string s = "\n"+name + " | " + entry.ToString() +" | "+ "00:00" + " | " + "Nil";
-                        Swriter.WriteLine(firstLine);
-                        Swriter.WriteLine(s);
-                        Swriter.Flush();
-                        Swriter.Close();
-                        Fstream.Close();
+                        var info = new FileInfo(path);
+                        if (info.Length == 0)
+                        {
+                            string firstLine = "Employee-Name" + " | " + "Login-Time" + " | " + " Time-Delayed" + " | " + "Reason for Delay";
+                            string s = "\n" + name + " | " + entry.ToString() + " | " + "00:00" + " | " + "Nil";
+                            Swriter.WriteLine(firstLine);
+                            writefunc(s);
+                        }
+                        else
+                        {
+                            string s = "\n" + name + " | " + entry.ToString() + " | " + "00:00" + " | " + "Nil"; ;
+                            writefunc(s);
+                        }
+                        i = 0;
                     }
                     else
                     {
-                        string s = "\n" + name + " | " + entry.ToString() + " | " + "00:00" + " | " + "Nil"; ;
-                        Swriter.WriteLine(s);
-                        Swriter.Flush();
-                        Swriter.Close();
-                        Fstream.Close();
+                        TimeSpan delayed_Time = entry.Subtract(entry_Time);
+                        Console.Write($"\nYour are late by {delayed_Time} HH:MM:SS\n\n Kindly Provide us the Reason for ur delay: ");
+                        string delay_Reason = Console.ReadLine();
+                        string s = "\n" + name + " | " + entry.ToString() + " | " + Convert.ToString(delayed_Time) + " | " + delay_Reason;
+                        writefunc(s);
+                        i = 0;
                     }
                 }
                 else
                 {
-                    TimeSpan delayed_Time = entry.Subtract(entry_Time);
-                    Console.WriteLine($"\nYou Logged in {delayed_Time} this Delayed\n Kindly Provide us the Reason for ur delay:");
-                    string delay_Reason = Console.ReadLine();
-                    Fstream = new FileStream("D:\\C#\\Login-Entry.txt", FileMode.Append, FileAccess.Write);
-                    Swriter = new StreamWriter(Fstream);
-                    string s = "\n" + name + " | " + entry.ToString()+ " | " + Convert.ToString(delayed_Time)+" | " +delay_Reason;
-                    Swriter.WriteLine(s);
+                    Console.WriteLine("\nEnter the input in correct time format (HH:MM:SS)");
 
-                    Swriter.Flush();
-                    Swriter.Close();
-                    Fstream.Close();
+                    Console.Write("\nEnter Your Login Time (HH:MM): ");
+
+                    input = Console.ReadLine();
 
                 }
             }
-            else 
-            {
-                Console.WriteLine("Enter a Valid time ");
-            }
+
+        }
+        public void writefunc(string str) 
+        {
+            Swriter.WriteLine(str);
+
+            Swriter.Flush();
+            Swriter.Close();
+            Fstream.Close();
+
 
         }
     }
