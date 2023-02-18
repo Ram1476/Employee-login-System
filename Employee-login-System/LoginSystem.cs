@@ -12,12 +12,13 @@ namespace Employee_login_System
     {
         public  string input;
         public string name;
-
+        public string entrystatus;
         public DateTime entry;
 
         public string path = @"D:\C#\Login-Entry.csv";
         static FileStream Fstream;
         static StreamWriter Swriter;
+        
         DateTime entry_Time = Convert.ToDateTime("10:00");
         public void loginEntry()
         {
@@ -36,8 +37,8 @@ namespace Employee_login_System
                         if (info.Length == 0)
                         {
 
-                            string firstLine = "Employee-Name" + " | " + "Login-Time" + " | " + " Time-Delayed" + " | " + "Reason for Delay";
-                            string s = "\n" + name + " | " + entry.ToString() + " | " + "00:00" + " | " + "Nil";
+                            string firstLine = "Employee-Name" + " | " + "Entry-Status" + " | " + "Login-Time" + " | " + " Time-Delayed" + " | " + "Reason for Delay";
+                            string s = "\n" + name + " | " + entrystatus + " | " + entry.ToString() + " | " + "00:00" + " | " + "Nil";
                             Swriter.WriteLine(firstLine);
                             writefunc(s);
                             
@@ -45,7 +46,7 @@ namespace Employee_login_System
                         }
                         else
                         {
-                            string s = "\n" + name + " | " + entry.ToString() + " | " + "00:00" + " | " + "Nil"; ;
+                            string s = "\n" + name + " | "+ entrystatus + " | " + entry.ToString() + " | " + "00:00" + " | " + "Nil"; 
                             writefunc(s);
                         }
                         i = 0;
@@ -57,10 +58,10 @@ namespace Employee_login_System
                         if (info.Length == 0)
                         {
 
-                            string firstLine = "Employee-Name" + " | " + "Login-Time" + " | " + " Time-Delayed" + " | " + "Reason for Delay";
+                            string firstLine = "Employee-Name" + " | " + "Entry-Status" + " | " + "Login-Time" + " | " + " Time-Delayed" + " | " + "Reason for Delay";
                             Console.Write($"\nYour are late by {delayed_Time} HH:MM:SS \n\n Kindly Provide us the Reason for ur delay: ");
                             string delay_Reason = Console.ReadLine();
-                            string s = "\n" + name + " | " + entry.ToString() + " | " + Convert.ToString(delayed_Time) + " | " + delay_Reason;
+                            string s = "\n" + name + " | " + entrystatus + " | " + entry.ToString() + " | " + Convert.ToString(delayed_Time) + " | " + delay_Reason;
                             Swriter.WriteLine(firstLine);
                             writefunc(s);
 
@@ -70,7 +71,7 @@ namespace Employee_login_System
                         {
                             Console.Write($"\nYour are late by {delayed_Time} HH:MM:SS \n\n Kindly Provide us the Reason for ur delay: ");
                             string delay_Reason = Console.ReadLine();
-                            string s = "\n" + name + " | " + entry.ToString() + " | " + Convert.ToString(delayed_Time) + " | " + delay_Reason;
+                            string s = "\n" + name + " | " + entrystatus + " | " + entry.ToString() + " | " + Convert.ToString(delayed_Time) + " | " + delay_Reason;
                             writefunc(s);
                         }
                         
@@ -93,6 +94,7 @@ namespace Employee_login_System
         }
         public void writefunc(string str) 
         {
+            
             Swriter.WriteLine(str);
 
             Swriter.Flush();
@@ -100,6 +102,29 @@ namespace Employee_login_System
             Fstream.Close();
 
 
+        }
+        public void notentered() 
+        {
+            Fstream = new FileStream("D:\\C#\\Login-Entry.csv", FileMode.Append, FileAccess.Write);
+
+            Swriter = new StreamWriter(Fstream);
+
+            var info = new FileInfo(path);
+            if (info.Length == 0)
+            {
+
+                string firstLine = "Employee-Name" + " | " + "entrystatus" + " | " + "Login-Time" + " | " + " Time-Delayed" + " | " + "Reason for Delay";
+                string s = "\n" + name + " | " + entrystatus + " | " + "00:00:00" + " | " + "00:00:00" + " | " + "Nil";
+                Swriter.WriteLine(firstLine);
+                writefunc(s);
+
+
+            }
+            else
+            {
+                string s = "\n" + name + " | " + entrystatus + " | " + "00:00:00" + " | " + "00:00:00" + " | " + "Nil";
+                writefunc(s);
+            }
         }
 
         public void read() 
