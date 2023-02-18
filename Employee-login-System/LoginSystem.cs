@@ -14,8 +14,8 @@ namespace Employee_login_System
         public string name;
 
         public DateTime entry;
-        
-        
+
+        public string path = @"D:\C#\Login-Entry.csv";
         static FileStream Fstream;
         static StreamWriter Swriter;
         DateTime entry_Time = Convert.ToDateTime("10:00");
@@ -23,7 +23,7 @@ namespace Employee_login_System
         {
 
             Fstream = new FileStream("D:\\C#\\Login-Entry.csv", FileMode.Append, FileAccess.Write);
-            string path = @"D:\\C#\\Login-Entry.csv";
+            
             Swriter = new StreamWriter(Fstream);
             int i = 1;
             while (i > 0)
@@ -53,11 +53,27 @@ namespace Employee_login_System
                     else
                     {
                         TimeSpan delayed_Time = entry.Subtract(entry_Time);
+                        var info = new FileInfo(path);
+                        if (info.Length == 0)
+                        {
 
-                        Console.Write($"\nYour are late by {delayed_Time} HH:MM:SS \n\n Kindly Provide us the Reason for ur delay: ");
-                        string delay_Reason = Console.ReadLine();
-                        string s = "\n" + name + " | " + entry.ToString() + " | " + Convert.ToString(delayed_Time) + " | " + delay_Reason;
-                        writefunc(s);
+                            string firstLine = "Employee-Name" + " | " + "Login-Time" + " | " + " Time-Delayed" + " | " + "Reason for Delay";
+                            Console.Write($"\nYour are late by {delayed_Time} HH:MM:SS \n\n Kindly Provide us the Reason for ur delay: ");
+                            string delay_Reason = Console.ReadLine();
+                            string s = "\n" + name + " | " + entry.ToString() + " | " + Convert.ToString(delayed_Time) + " | " + delay_Reason;
+                            Swriter.WriteLine(firstLine);
+                            writefunc(s);
+
+
+                        }
+                        else
+                        {
+                            Console.Write($"\nYour are late by {delayed_Time} HH:MM:SS \n\n Kindly Provide us the Reason for ur delay: ");
+                            string delay_Reason = Console.ReadLine();
+                            string s = "\n" + name + " | " + entry.ToString() + " | " + Convert.ToString(delayed_Time) + " | " + delay_Reason;
+                            writefunc(s);
+                        }
+                        
                         i = 0;
                     }
                 }
@@ -84,6 +100,19 @@ namespace Employee_login_System
             Fstream.Close();
 
 
+        }
+
+        public void read() 
+        {
+            StreamReader read = new StreamReader(path);
+
+            string sr = " ";
+            while (sr != null) 
+            {
+                sr = read.ReadLine();
+                Console.WriteLine(sr);
+
+            }
         }
     }
 }

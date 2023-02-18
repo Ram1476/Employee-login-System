@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,7 @@ namespace Employee_login_System
             Console.WriteLine("\n******* Thank You for using the Employee-Login-System ********");
             Console.WriteLine("\n******* HAVE A NICE DAY *******");
             Console.WriteLine("\n------------------------------------------------------------");
+            user1.read();
             Console.ReadLine();
         }
     }
